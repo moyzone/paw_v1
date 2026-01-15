@@ -110,9 +110,9 @@ Contact (/ContactUs)
    - `/public/images/home1.jpg` - Main hero image
 
 2. **Product Images**
-   - `/public/images/product-indie-dog.jpg`
-   - `/public/images/product-advanced-dog.jpg`
-   - `/public/images/product-cat.jpg`
+   - `/public/images/pawthentic_indie_bottle.png`
+   - `/public/images/pawthentic_breed_bottle.png`
+   - `/public/images/pawthentic_cat_bottle.png`
 
 **Current**: Using emoji placeholders for MVP
 

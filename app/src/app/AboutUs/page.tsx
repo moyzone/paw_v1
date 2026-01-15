@@ -165,7 +165,7 @@ export default function About() {
           ].map(({ title, desc, features }, i) => (
             <motion.div
               key={title}
-              className="p-8 bg-gradient-to-b from-[var(--gold-light)] to-[var(--gold-dark)] rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-theme"
+              className="p-8 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-theme"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.2 }}

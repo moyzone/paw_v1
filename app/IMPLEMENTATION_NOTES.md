@@ -17,9 +17,9 @@
 
 ### 1. Product Images
 **Files to update**: `/public/images/`
-- [ ] `product-indie-dog.jpg` - Indie Dog Shampoo
-- [ ] `product-advanced-dog.jpg` - Advanced Dog Coat Shampoo
-- [ ] `product-cat.jpg` - Foaming Cat Shampoo
+- [ ] `pawthentic_indie_bottle.png` - Indie Dog Shampoo
+- [ ] `pawthentic_breed_bottle.png` - Advanced Dog Coat Shampoo
+- [ ] `pawthentic_cat_bottle.png` - Foaming Cat Shampoo
 - [ ] `home1.jpg` - Hero image (pet care themed)
 
 **Current Status**: Using emoji placeholders (🐕 🐱)

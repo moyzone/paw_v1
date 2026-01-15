@@ -38,9 +38,9 @@ export default function Products() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              {/* Product Image Placeholder */}
-              <div className="h-72 bg-gradient-to-b from-[var(--gold-light)] to-[var(--gold-dark)] flex items-center justify-center text-6xl group-hover:scale-110 transition-transform">
-                {product.category === "dog" ? "🐕" : "🐱"}
+              {/* Product Image */}
+              <div className="h-72 bg-white flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform">
+                <img src={product.image} alt={product.name} className="h-full w-auto object-contain" />
               </div>
 
               {/* Product Info */}

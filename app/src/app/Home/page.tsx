@@ -147,9 +147,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.2 }}
             >
-              {/* Product Image Placeholder */}
-              <div className="h-64 bg-gradient-to-b from-[var(--gold-light)] to-[var(--gold-dark)] flex items-center justify-center text-4xl">
-                {product.category === "dog" ? "🐕" : "🐱"}
+              {/* Product Image */}
+              <div className="h-64 bg-white flex items-center justify-center overflow-hidden">
+                <img src={product.image} alt={product.name} className="h-full w-auto object-contain" />
               </div>
 
               {/* Product Info */}

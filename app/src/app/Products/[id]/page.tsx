@@ -50,8 +50,8 @@ export default function ProductDetail() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="w-full h-96 bg-gradient-to-b from-[var(--gold-light)] to-[var(--gold-dark)] rounded-2xl flex items-center justify-center text-8xl shadow-lg">
-              {product.category === "dog" ? "🐕" : "🐱"}
+            <div className="w-full h-96 bg-white rounded-2xl flex items-center justify-center shadow-lg overflow-hidden">
+              <img src={product.image} alt={product.name} className="h-full w-auto object-contain" />
             </div>
           </motion.div>
 

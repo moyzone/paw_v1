@@ -7,11 +7,14 @@ import Footer from "./Components/Footer";
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  // Show Navbar/Footer only on specific routes
+  // Show Navbar/Footer on main site routes (include Products and product detail pages)
   const showLayout =
     pathname === "/AboutUs" ||
     pathname === "/gallery" ||
-    pathname === "/ContactUs";
+    pathname === "/ContactUs" ||
+    pathname === "/" ||
+    pathname === "/Products" ||
+    pathname?.startsWith("/Products/");
 
   return (
     <>
