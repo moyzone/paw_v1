@@ -1,0 +1,44 @@
+@import "tailwindcss"; /* =============================== GLOBAL THEME VARIABLES =================================*/
+:root {
+  --background: #ffffff; /* main white */
+  --foreground: #000000; /* black text */
+  --gold: #d4af37; /* main gold */
+  --gold-light: #f5d76e; /* lighter shade */
+  --gold-dark: #b8860b; /* darker shade */
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --gradient-start: #ffffff;
+  --gradient-end: #f5f5f5;
+} /* =============================== THEME UTILITIES =================================*/
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.bg-theme-gradient {
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+}
+.text-accent {
+  color: var(--gold);
+}
+.text-accent-light {
+  color: var(--gold-light);
+}
+.bg-accent {
+  background-color: var(--gold);
+}
+.bg-accent-gradient {
+  background: linear-gradient(to right, var(--gold), var(--gold-dark));
+}
+.border-theme {
+  border-color: var(--border-color);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
