@@ -36,19 +36,22 @@ export const metadata: Metadata = {
     "cat safe shampoo",
     "pet grooming products",
   ],
-  authors: [{ name: "Pawthentic" }, { name: "Bagora Agency", url: "https://bagoraagency.com" }],
-  creator: "Bagora Agency",
+  authors: [{ name: "Pawthentic" }, { name: "Pawthentic", url: "https://getpawthentic.com" }],
+  creator: "Pawthentic",
   publisher: "Pawthentic",
-  metadataBase: new URL("https://pawthentic.com"), // 🔗 replace with your real domain
+  metadataBase: new URL("https://getpawthentic.com"), // 🔗 replace with your real domain
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: "Pawthentic | Pure Paw Promise - Premium Pet Care",
     description:
       "Discover Pawthentic's premium pet care shampoos. Natural ingredients, safe formulations for dogs and cats. Pure Paw Promise.",
-    url: "https://pawthentic.com",
+    url: "https://getpawthentic.com",
     siteName: "Pawthentic",
     images: [
       {
-        url: "https://pawthentic.com/og-image.jpg", // 🖼️ Replace with your actual image
+        url: "https://getpawthentic.com/og-image.jpg", // 🖼️ Replace with your actual image
         width: 1200,
         height: 630,
         alt: "Pawthentic - Pure Paw Promise Premium Pet Care",
@@ -59,13 +62,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Restopia Homestay | Comfortable Stay in Guwahati",
+    title: "Pawthentic | Pure Paw Promise - Premium Pet Care",
     description:
-      "Enjoy a cozy, air-conditioned stay with free Wi-Fi and parking at Restopia Homestay, Guwahati.",
-    images: ["https://restopiahomestay.com/og-image.jpg"], // 🖼️ same image
+      "Pawthentic delivers premium, natural pet care shampoos for dogs and cats. Our Pure Paw Promise ensures safe, effective grooming.",
+    images: ["https://getpawthentic.com/og-image.jpg"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/images/only_logo_no_bg.png",
+    shortcut: "/images/only_logo_no_bg.png",
+    apple: "/images/only_logo_no_bg.png",
   },
 };
 

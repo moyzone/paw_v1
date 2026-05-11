@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Heart, Leaf, Zap, Shield } from "lucide-react";
 
 export default function About() {
@@ -22,7 +23,7 @@ export default function About() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Welcome to <strong>Pawthentic</strong> — where pet care meets pure love. We're dedicated to creating premium natural shampoos that protect, nourish, and celebrate the unique needs of dogs and cats.
+          Welcome to <strong>Pawthentic</strong> — where pet care meets pure love. We&apos;re dedicated to creating premium natural shampoos that protect, nourish, and celebrate the unique needs of dogs and cats.
         </motion.p>
       </section>
 
@@ -40,7 +41,7 @@ export default function About() {
               Pawthentic was born from a simple belief: pets are family, and family deserves the best. What started as a personal quest to find safe, natural grooming products for beloved pets has grown into a mission to revolutionize pet care.
             </p>
             <p className="text-secondary leading-relaxed">
-              Every shampoo is crafted with meticulous care, blending time-tested natural ingredients with modern science. We believe that your pets' health and happiness should never be compromised for convenience.
+              Every shampoo is crafted with meticulous care, blending time-tested natural ingredients with modern science. We believe that your pets&apos; health and happiness should never be compromised for convenience.
             </p>
           </motion.div>
 
@@ -62,7 +63,7 @@ export default function About() {
               >
                 <div className="flex justify-center mb-3">
                   <div className="p-3 bg-[var(--gold-dark)] rounded-full">
-                    <Icon className="w-6 h-6 text-accent" />
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
                 </div>
                 <h3 className="font-semibold">{title}</h3>
@@ -117,7 +118,7 @@ export default function About() {
             >
               <div className="flex justify-center mb-4">
                 <div className="p-4 bg-[var(--gold-dark)] rounded-full">
-                  <Icon className="w-8 h-8 text-accent" />
+                  <Icon className="w-8 h-8 text-white" />
                 </div>
               </div>
               <h3 className="text-xl font-bold text-accent mb-3">{title}</h3>
@@ -217,7 +218,7 @@ export default function About() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-20 bg-accent-gradient text-black text-center">
+      <section className="py-20 bg-accent-gradient text-white text-center">
         <motion.h2
           className="text-3xl md:text-4xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}
@@ -227,19 +228,19 @@ export default function About() {
           Ready to Experience Pawthentic?
         </motion.h2>
         <motion.p
-          className="text-black/80 max-w-2xl mx-auto mb-8"
+          className="text-white/90 max-w-2xl mx-auto mb-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           Give your furry friends the gift of pure, natural pet care. Join our growing community of satisfied pet parents.
         </motion.p>
-        <a
+        <Link
           href="/Products"
-          className="inline-block bg-black text-accent font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-[var(--gold-dark)] hover:text-black transition-transform transform hover:scale-105"
+          className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105"
         >
           Shop Pawthentic
-        </a>
+        </Link>
       </section>
     </main>
   );

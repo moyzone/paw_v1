@@ -71,7 +71,7 @@ export default function Products() {
                 {/* CTA Button */}
                 <Link
                   href={`/Products/${product.id}`}
-                  className="text-center bg-accent hover:opacity-90 text-black font-semibold px-6 py-3 rounded-full transition-transform transform hover:scale-105"
+                  className="text-center bg-accent hover:opacity-90 text-white font-semibold px-6 py-3 rounded-full transition-transform transform hover:scale-105"
                 >
                   View Details & Buy
                 </Link>
@@ -97,7 +97,7 @@ export default function Products() {
             { name: "Oatmeal", emoji: "🌾", benefit: "Soothes & protects sensitive skin" },
             { name: "Aloe Vera", emoji: "🌿", benefit: "Healing & anti-inflammatory" },
             { name: "Coconut Oil", emoji: "🥥", benefit: "Deep moisturizing & conditioning" },
-            { name: "Strawberry", emoji: "🍓", benefit: "Antioxidant & nourishing" },
+            { name: "Almond", emoji: "🫘", benefit: "Antioxidant & nourishing" },
           ].map(({ name, emoji, benefit }, i) => (
             <motion.div
               key={name}
@@ -159,7 +159,7 @@ export default function Products() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-20 bg-accent-gradient text-black text-center">
+      <section className="py-20 bg-accent-gradient text-white text-center">
         <motion.h2
           className="text-3xl md:text-4xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}
@@ -169,7 +169,7 @@ export default function Products() {
           Give Your Pets the Pawthentic Experience
         </motion.h2>
         <motion.p
-          className="text-black/80 max-w-2xl mx-auto mb-8"
+          className="text-white/90 max-w-2xl mx-auto mb-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -178,7 +178,7 @@ export default function Products() {
         </motion.p>
         <Link
           href="/ContactUs"
-          className="inline-block bg-black text-accent font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-[var(--gold-dark)] hover:text-black transition-transform transform hover:scale-105"
+          className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105"
         >
           Have Questions? Contact Us
         </Link>

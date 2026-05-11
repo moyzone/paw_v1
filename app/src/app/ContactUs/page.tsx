@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { submitToGoogleSheets } from "../utils/submitToGoogleSheets";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,10 +25,17 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Here you would typically send the form data to a server
-    console.log("Form submitted:", formData);
+
+    await submitToGoogleSheets({
+      type: 'contact',
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message
+    });
+
     setSubmitted(true);
     setFormData({ name: "", email: "", subject: "", message: "" });
     setTimeout(() => setSubmitted(false), 3000);
@@ -50,7 +58,7 @@ export default function Contact() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Have questions about our products? Want to share your pet's Pawthentic story? We'd love to hear from you!
+          Have questions about our products? Want to share your pet&apos;s Pawthentic story? We&apos;d love to hear from you!
         </motion.p>
       </section>
 
@@ -69,29 +77,29 @@ export default function Contact() {
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-accent rounded-full flex-shrink-0">
-                  <Mail className="w-6 h-6 text-black" />
+                  <Mail className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Email</h3>
-                  <p className="text-secondary">contact@pawthentic.com</p>
-                  <p className="text-secondary text-sm">We'll respond within 24 hours</p>
+                  <p className="text-secondary">info@getpawthentic.com</p>
+                  <p className="text-secondary text-sm">We&apos;ll respond within 24 hours</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-accent rounded-full flex-shrink-0">
-                  <Phone className="w-6 h-6 text-black" />
+                  <Phone className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Phone</h3>
-                  <p className="text-secondary">1-800-PAW-CARE</p>
+                  <p className="text-secondary">+91-9181030800</p>
                   <p className="text-secondary text-sm">Mon-Fri, 9 AM - 6 PM EST</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-accent rounded-full flex-shrink-0">
-                  <MessageCircle className="w-6 h-6 text-black" />
+                  <MessageCircle className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">WhatsApp</h3>
@@ -100,7 +108,7 @@ export default function Contact() {
                     href="https://wa.me/1800PAWCARE?text=Hello!%20I%20have%20a%20question%20about%20Pawthentic%20products."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-accent hover:opacity-90 text-black font-semibold px-4 py-2 rounded-full transition-transform transform hover:scale-105"
+                    className="inline-flex items-center gap-2 bg-accent hover:opacity-90 text-white font-semibold px-4 py-2 rounded-full transition-transform transform hover:scale-105"
                   >
                     <MessageCircle size={18} />
                     Chat Now
@@ -148,7 +156,7 @@ export default function Contact() {
               <div className="text-5xl mb-4">✓</div>
               <h3 className="text-2xl font-bold text-accent mb-2">Thank You!</h3>
               <p className="text-secondary mb-4">
-                Your message has been sent successfully. We'll get back to you soon!
+                Your message has been sent successfully. We&apos;ll get back to you soon!
               </p>
             </motion.div>
           ) : (
@@ -164,6 +172,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  suppressHydrationWarning
                   className="w-full px-4 py-2 bg-[var(--gradient-end)] border border-theme rounded-lg focus:outline-none focus:border-accent transition"
                   placeholder="Your name"
                 />
@@ -180,6 +189,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  suppressHydrationWarning
                   className="w-full px-4 py-2 bg-[var(--gradient-end)] border border-theme rounded-lg focus:outline-none focus:border-accent transition"
                   placeholder="your@email.com"
                 />
@@ -196,6 +206,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
+                  suppressHydrationWarning
                   className="w-full px-4 py-2 bg-[var(--gradient-end)] border border-theme rounded-lg focus:outline-none focus:border-accent transition"
                   placeholder="How can we help?"
                 />
@@ -212,6 +223,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
+                  suppressHydrationWarning
                   className="w-full px-4 py-2 bg-[var(--gradient-end)] border border-theme rounded-lg focus:outline-none focus:border-accent transition resize-none"
                   placeholder="Tell us more about your inquiry..."
                 />
@@ -220,13 +232,14 @@ export default function Contact() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-accent hover:opacity-90 text-black font-semibold py-3 rounded-full transition-transform transform hover:scale-105"
+                suppressHydrationWarning
+                className="w-full bg-accent hover:opacity-90 text-white font-semibold py-3 rounded-full transition-transform transform hover:scale-105"
               >
                 Send Message
               </button>
 
               <p className="text-secondary text-sm text-center">
-                We'll get back to you as soon as possible!
+                We&apos;ll get back to you as soon as possible!
               </p>
             </form>
           )}
@@ -234,25 +247,25 @@ export default function Contact() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-20 bg-accent-gradient text-black text-center mt-12">
+      <section className="py-20 bg-accent-gradient text-white text-center mt-12">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">Join the Pawthentic Community</h2>
-        <p className="text-black/80 max-w-2xl mx-auto mb-8">
-          Share your pet's Pawthentic experience on social media with #PawthenticPets
+        <p className="text-white/90 max-w-2xl mx-auto mb-8">
+          Share your pet&apos;s Pawthentic experience on social media with #PawthenticPets
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a
-            href="https://instagram.com/pawthentic"
+            href="https://instagram.com/getpawthentic"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-black text-accent font-semibold px-8 py-3 rounded-full hover:bg-[var(--gold-dark)] hover:text-black transition"
+            className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-full hover:bg-gray-200 transition"
           >
             Follow on Instagram
           </a>
           <a
-            href="https://facebook.com/pawthentic"
+            href="https://www.facebook.com/profile.php?id=61586162526090"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block border-2 border-black text-black font-semibold px-8 py-3 rounded-full hover:bg-black hover:text-accent transition"
+            className="inline-block border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-black transition"
           >
             Like on Facebook
           </a>

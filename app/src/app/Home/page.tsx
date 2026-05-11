@@ -5,58 +5,67 @@ import Link from "next/link";
 import { Droplet, Heart, Leaf } from "lucide-react";
 import { getFeaturedProducts } from "@/data/products";
 
+import VideoHero from "../Components/VideoHero";
+
 export default function Home() {
   const featuredProducts = getFeaturedProducts();
 
   return (
     <main className="bg-theme-gradient text-[var(--text-primary)] overflow-hidden">
-      {/* HERO SECTION */}
-      <section className="relative py-24 md:py-32 px-6 flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto">
-        <motion.div
-          className="flex-1 text-center md:text-left z-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight">
-            <span className="text-accent">Pawthentic</span>
-            <br />
-            Pure Paw Promise
-          </h1>
-          <p className="text-secondary text-lg md:text-xl mb-8 max-w-xl">
-            Premium natural pet care shampoos formulated with love for your furry companions. Safe, effective, and crafted with ingredients like oatmeal, aloe, and coconut.
-          </p>
-          <div className="flex gap-4 justify-center md:justify-start flex-wrap">
-            <Link
-              href="/Products"
-              className="bg-accent hover:opacity-90 text-black font-semibold px-8 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105"
-            >
-              Explore Products
-            </Link>
-            <Link
-              href="/AboutUs"
-              className="border border-theme text-accent hover:bg-[var(--gold-dark)] hover:text-black font-semibold px-8 py-3 rounded-full transition"
-            >
-              Our Story
-            </Link>
-          </div>
-        </motion.div>
+      {/* HERO SECTION WITH VIDEO BACKGROUND */}
+      <VideoHero>
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 py-12 md:py-0">
+          <motion.div
+            className="flex-1 text-center md:text-left z-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight text-white drop-shadow-md">
+              <span className="text-white">Pawthentic</span>
+              <br />
+              Pure Paw Promise
+            </h1>
+            <p className="text-gray-100 text-lg md:text-xl mb-8 max-w-xl drop-shadow-sm">
+              Premium natural pet care shampoos formulated with love for your furry companions. Safe, effective, and crafted with ingredients like oatmeal, aloe, and coconut.
+            </p>
+            <div className="flex gap-4 justify-center md:justify-start flex-wrap">
+              <Link
+                href="/Products"
+                className="bg-accent hover:opacity-90 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105"
+              >
+                Explore Products
+              </Link>
+              <Link
+                href="/AboutUs"
+                className="border border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-3 rounded-full transition"
+              >
+                Our Story
+              </Link>
+            </div>
+          </motion.div>
 
-        <motion.div
-          className="flex-1 mb-12 md:mb-0 relative flex justify-center"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="relative w-[280px] sm:w-[360px] md:w-[420px] h-[320px] sm:h-[420px] md:h-[480px]">
-            <img
-              src="/images/home1.jpg"
-              alt="Pawthentic pet care products"
-              className="relative z-10 rounded-3xl shadow-2xl object-cover w-full h-full"
-            />
-          </div>
-        </motion.div>
-      </section>
+          {/* Optional: We can keep or remove the image. 
+              Since the video is the background, we might not need the image, 
+              or we can keep it if it's a specific product highlight.
+              For now keeping it but styling it to fit nicely. 
+          */}
+          <motion.div
+            className="flex-1 mb-12 md:mb-0 relative flex justify-center w-full"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="relative w-[280px] sm:w-[360px] md:w-[420px] h-[320px] sm:h-[420px] md:h-[480px]">
+              {/* <img
+                src="/images/home1.jpg"
+                alt="Pawthentic pet care products"
+                className="relative z-10 rounded-3xl shadow-2xl object-cover w-full h-full border-4 border-white/20"
+              /> */}
+            </div>
+          </motion.div>
+        </div>
+      </VideoHero>
 
       {/* WHY PAWTHENTIC SECTION */}
       <section className="py-20 text-center bg-[var(--background)]">
@@ -108,7 +117,7 @@ export default function Home() {
             >
               <div className="flex justify-center mb-4">
                 <div className="p-3 bg-[var(--gold-dark)] rounded-full">
-                  <Icon className="w-6 h-6 text-accent" />
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
               </div>
               <h3 className="text-xl font-semibold mb-2">{title}</h3>
@@ -168,7 +177,7 @@ export default function Home() {
                 {/* CTA Button */}
                 <Link
                   href={`/Products/${product.id}`}
-                  className="text-center bg-accent hover:opacity-90 text-black font-semibold px-4 py-2 rounded-full transition-transform transform hover:scale-105"
+                  className="text-center bg-accent hover:opacity-90 text-white font-semibold px-4 py-2 rounded-full transition-transform transform hover:scale-105"
                 >
                   View Details
                 </Link>
@@ -181,7 +190,7 @@ export default function Home() {
         <div className="text-center mt-12">
           <Link
             href="/Products"
-            className="inline-block border border-theme text-accent hover:bg-[var(--gold-dark)] hover:text-black font-semibold px-8 py-3 rounded-full transition"
+            className="inline-block border border-theme text-black hover:bg-black hover:text-white font-semibold px-8 py-3 rounded-full transition"
           >
             Browse All Products
           </Link>
@@ -204,7 +213,7 @@ export default function Home() {
             { name: "Oatmeal", emoji: "🌾", benefit: "Soothes skin" },
             { name: "Aloe Vera", emoji: "🌿", benefit: "Healing & soothing" },
             { name: "Coconut", emoji: "🥥", benefit: "Moisturizing" },
-            { name: "Strawberry", emoji: "🍓", benefit: "Nourishing" },
+            { name: "Almond", emoji: "🫘", benefit: "Nourishing" },
           ].map(({ name, emoji, benefit }, i) => (
             <motion.div
               key={name}
@@ -222,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-20 bg-accent-gradient text-black text-center">
+      <section className="py-20 bg-accent-gradient text-white text-center">
         <motion.h2
           className="text-3xl md:text-4xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}
@@ -232,7 +241,7 @@ export default function Home() {
           Your Pets Deserve the Best
         </motion.h2>
         <motion.p
-          className="text-black/80 max-w-2xl mx-auto mb-8"
+          className="text-white/90 max-w-2xl mx-auto mb-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -241,7 +250,7 @@ export default function Home() {
         </motion.p>
         <Link
           href="/Products"
-          className="inline-block bg-black text-accent font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-[var(--gold-dark)] hover:text-black transition-transform transform hover:scale-105"
+          className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105"
         >
           Shop Now
         </Link>

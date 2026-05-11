@@ -60,7 +60,6 @@ export const products: Product[] = [
       "Reduces grooming time",
     ],
     ingredients: [
-      "Strawberry Extract",
       "Coconut Oil",
       "Aloe Vera",
       "Oatmeal",

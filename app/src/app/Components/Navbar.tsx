@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
@@ -11,23 +11,26 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const linkClass = (path: string) =>
-    `block px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-      pathname === path
-        ? "bg-accent text-black"
-        : "text-[var(--text-primary)] hover:text-accent"
+    `block px-4 py-2 rounded-md text-sm font-medium transition-colors ${pathname === path
+      ? "bg-accent text-white"
+      : "text-[var(--text-primary)] hover:text-accent"
     }`;
 
   return (
     <nav className="bg-[var(--background)] border-b border-theme sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* LOGO + BRAND */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center group-hover:bg-accent-light transition-colors">
-            <span className="text-lg font-bold text-black">🐾</span>
-          </div>
-          <span className="text-xl font-bold text-accent group-hover:text-accent-light transition-colors">
-            Pawthentic
-          </span>
+        <Link href="/" className="flex items-center gap-2 group">
+          <img
+            src="/images/only_logo_no_bg.png?v=2"
+            alt="Pawthentic Logo"
+            className="w-auto h-8 object-contain"
+          />
+          <img
+            src="/images/only_text_no_bg.png?v=2"
+            alt="Pawthentic"
+            className="w-auto h-6 object-contain"
+          />
         </Link>
 
         {/* DESKTOP LINKS */}
