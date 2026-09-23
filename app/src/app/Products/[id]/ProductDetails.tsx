@@ -6,14 +6,32 @@ import { useParams } from "next/navigation";
 import { getProductById } from "@/data/products";
 import { ShoppingCart, Package, Award, Droplet } from "lucide-react";
 import WaitlistPopup from "../../Components/WaitlistPopup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
+
+interface MetaPixelWindow {
+    fbq?: (event: string, action: string, params?: Record<string, unknown>) => void;
+}
 
 export default function ProductDetail() {
     const params = useParams();
     const product = getProductById(params.id as string);
 
     const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+    const [amazonTarget, setAmazonTarget] = useState("_blank");
+
+    useEffect(() => {
+        if (!product) return;
+
+        if (typeof window !== "undefined" && typeof navigator !== "undefined") {
+            const userAgent = navigator.userAgent || navigator.vendor || "";
+            const isMobile = /android|iPad|iPhone|iPod/i.test(userAgent);
+
+            if (isMobile) {
+                setAmazonTarget("_self");
+            }
+        }
+    }, [product]);
 
     if (!product) {
         return (
@@ -32,13 +50,53 @@ export default function ProductDetail() {
         );
     }
 
+    // Product Schema for SEO
+    const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": product.name,
+        "image": `https://getpawthentic.com${product.image}`,
+        "description": product.description,
+        "brand": {
+            "@type": "Brand",
+            "name": "Pawthentic"
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": `https://getpawthentic.com/Products/${product.id}`,
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition"
+        }
+    };
+
     const handleBuyClick = (e: React.MouseEvent) => {
         e.preventDefault();
         setIsWaitlistOpen(true);
     };
 
+    const handleAmazonClick = () => {
+        if (typeof window !== "undefined") {
+            const pixelWindow = window as unknown as MetaPixelWindow;
+            if (pixelWindow.fbq) {
+                pixelWindow.fbq('track', 'Purchase', {
+                    content_name: product.name,
+                    content_ids: [product.id],
+                    content_type: 'product',
+                    value: 0.00,
+                    currency: 'INR'
+                });
+            }
+        }
+    };
+
     return (
         <main className="bg-theme-gradient text-[var(--text-primary)] overflow-hidden">
+            {/* Product SEO Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+            />
             <WaitlistPopup isOpen={isWaitlistOpen} onClose={() => setIsWaitlistOpen(false)} />
 
             {/* BREADCRUMB */}
@@ -86,7 +144,9 @@ export default function ProductDetail() {
                         <div className="flex gap-4 flex-wrap mb-8">
                             <a
                                 href={product.amazonUrl}
-                                onClick={handleBuyClick}
+                                target={amazonTarget}
+                                rel="noopener noreferrer"
+                                onClick={handleAmazonClick}
                                 className="flex items-center gap-2 bg-accent hover:opacity-90 text-white font-semibold px-6 py-3 rounded-full transition-transform transform hover:scale-105"
                             >
                                 <ShoppingCart size={20} />
@@ -95,7 +155,7 @@ export default function ProductDetail() {
                             <a
                                 href={product.flipkartUrl}
                                 onClick={handleBuyClick}
-                                className="flex items-center gap-2 border border-theme text-accent hover:bg-[var(--gold-dark)] hover:text-white font-semibold px-6 py-3 rounded-full transition"
+                                className="hidden flex items-center gap-2 border border-theme text-accent hover:bg-[var(--gold-dark)] hover:text-white font-semibold px-6 py-3 rounded-full transition"
                             >
                                 <Package size={20} />
                                 Buy on Flipkart
@@ -266,7 +326,9 @@ export default function ProductDetail() {
                 <div className="flex gap-4 justify-center flex-wrap">
                     <a
                         href={product.amazonUrl}
-                        onClick={handleBuyClick}
+                        target={amazonTarget}
+                        rel="noopener noreferrer"
+                        onClick={handleAmazonClick}
                         className="inline-block bg-white text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105"
                     >
                         Buy on Amazon
@@ -274,7 +336,7 @@ export default function ProductDetail() {
                     <a
                         href={product.flipkartUrl}
                         onClick={handleBuyClick}
-                        className="inline-block border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-black transition-transform transform hover:scale-105"
+                        className="hidden inline-block border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-black transition-transform transform hover:scale-105"
                     >
                         Buy on Flipkart
                     </a>

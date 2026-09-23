@@ -10,8 +10,30 @@ import VideoHero from "../Components/VideoHero";
 export default function Home() {
   const featuredProducts = getFeaturedProducts();
 
+  // Video Schema for SEO
+  const videoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Pawthentic Premium Pet Care",
+    "description": "Experience the Pure Paw Promise with Pawthentic's natural pet care shampoos. Safe, effective grooming for your furry companions.",
+    "thumbnailUrl": "https://getpawthentic.com/images/pawthentic_indie_bottle.png",
+    "uploadDate": "2024-01-01T08:00:00Z",
+    "contentUrl": "https://getpawthentic.com/videos/pawthentic_indie.mp4",
+    "embedUrl": "https://getpawthentic.com",
+    "potentialAction": {
+      "@type": "SeekAction",
+      "target": "https://getpawthentic.com?t={seek_to_second_number}",
+      "startOffset-input": "required name=seek_to_second_number"
+    }
+  };
+
   return (
     <main className="bg-theme-gradient text-[var(--text-primary)] overflow-hidden">
+      {/* Video SEO Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+      />
       {/* HERO SECTION WITH VIDEO BACKGROUND */}
       <VideoHero>
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 py-12 md:py-0">
@@ -228,6 +250,83 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-20 px-6 max-w-4xl mx-auto">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Frequently Asked <span className="text-accent">Questions</span>
+        </motion.h2>
+
+        <div className="space-y-6">
+          {[
+            {
+              q: "Is Pawthentic shampoo safe for all dog breeds?",
+              a: "Yes! Our shampoos are pH-balanced and formulated with natural ingredients like aloe and oatmeal, making them safe for all breeds, including those with sensitive skin.",
+            },
+            {
+              q: "Can I use the dog shampoo on my cat?",
+              a: "While our dog shampoos are natural, we recommend using our Foaming Cat Shampoo specifically for cats, as it is formulated with a feline-specific pH level for optimal safety.",
+            },
+            {
+              q: "Are your products truly natural?",
+              a: "Absolutely. We follow our Pure Paw Promise, using ingredients like coconut oil, almond, and plant-based extracts without harsh chemicals or toxins.",
+            },
+          ].map((faq, i) => (
+            <motion.div
+              key={i}
+              className="p-6 bg-[var(--background)] rounded-xl border border-theme shadow-sm"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+            >
+              <h3 className="font-bold text-lg text-accent mb-2">Q: {faq.q}</h3>
+              <p className="text-secondary">A: {faq.a}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* FAQ Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Is Pawthentic shampoo safe for all dog breeds?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! Our shampoos are pH-balanced and formulated with natural ingredients like aloe and oatmeal, making them safe for all breeds, including those with sensitive skin."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I use the dog shampoo on my cat?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "While our dog shampoos are natural, we recommend using our Foaming Cat Shampoo specifically for cats, as it is formulated with a feline-specific pH level for optimal safety."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Are your products truly natural?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. We follow our Pure Paw Promise, using ingredients like coconut oil, almond, and plant-based extracts without harsh chemicals or toxins."
+                  }
+                }
+              ]
+            }),
+          }}
+        />
       </section>
 
       {/* CTA SECTION */}

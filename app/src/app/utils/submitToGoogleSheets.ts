@@ -1,6 +1,6 @@
 
 // Placeholder URL - will be replaced by user input
-export const GOOGLE_SHEETS_WEB_APP_URL = "PLACEHOLDER_URL";
+export const GOOGLE_SHEETS_WEB_APP_URL: string = "https://script.google.com/macros/s/AKfycbwxQfsJIvwNS8EP0HO0LnRUE7efCjttitlTWaCLoDUSYQYoQqavH-T_5YcbXfanJvp4/exec";
 
 /**
  * Submits form data to the Google Apps Script Web App

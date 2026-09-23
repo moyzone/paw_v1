@@ -2,7 +2,13 @@
 
 import { motion } from "framer-motion";
 
-export default function VideoHero({ children }: { children: React.ReactNode }) {
+export default function VideoHero({ 
+    children, 
+    poster = "/images/pawthentic_indie_bottle.png" // Default fallback
+}: { 
+    children: React.ReactNode;
+    poster?: string;
+}) {
     const videoSrc = "/videos/pawthentic_indie.mp4";
 
     return (
@@ -11,6 +17,7 @@ export default function VideoHero({ children }: { children: React.ReactNode }) {
             <div className="absolute inset-0 w-full h-full">
                 <motion.video
                     src={videoSrc}
+                    poster={poster}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8 }}
@@ -19,6 +26,7 @@ export default function VideoHero({ children }: { children: React.ReactNode }) {
                     loop
                     muted
                     playsInline
+                    aria-label="Pawthentic Indie Dog Shampoo Video"
                 />
 
                 {/* Dark Overlay for text readability */}
